@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Define the default standard out appender for outputing logs. -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{ISO8601} | %msg%n</Pattern>
+		</layout>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>centralized-logs.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- hourly rollover -->
+			<fileNamePattern>centralized-logs.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+			<!-- keep 3 days' worth of history -->
+			<maxHistory>3</maxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<charset>UTF-8</charset>
+			<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{ISO8601} | %-5level | %logger{36} [%thread] | %msg%n
+			</Pattern>
+		</layout>
+		</encoder>
+	</appender>
+
+	<!-- Set the default logging level to "ALL" level for loggers which are not specified. -->
+	<root level="ALL">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+	
+	<receiver class="ch.qos.logback.classic.net.server.ServerSocketReceiver">
+		<port>10000</port>
+	</receiver>
+</configuration>
