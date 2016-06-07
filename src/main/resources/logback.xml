@@ -11,7 +11,7 @@
 		<file>centralized-logs.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- hourly rollover -->
-			<fileNamePattern>centralized-logs.%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+			<fileNamePattern>centralized-logs.%d{yyyy-MM-dd_HH}.gz</fileNamePattern>
 			<!-- keep 3 days' worth of history -->
 			<maxHistory>3</maxHistory>
 		</rollingPolicy>
