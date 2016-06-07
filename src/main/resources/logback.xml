@@ -3,7 +3,7 @@
 	<!-- Define the default standard out appender for outputing logs. -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{ISO8601} | %msg%n</Pattern>
+			<Pattern>%X{hostname} | %d{ISO8601} | %msg%n</Pattern>
 		</layout>
 	</appender>
 	
@@ -18,8 +18,7 @@
 		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 			<charset>UTF-8</charset>
 			<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>%d{ISO8601} | %-5level | %logger{36} [%thread] | %msg%n
-			</Pattern>
+			<Pattern>%X{hostname} | %d{ISO8601} | %-5level | %logger{36} [%thread] | %msg%n</Pattern>
 		</layout>
 		</encoder>
 	</appender>
